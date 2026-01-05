@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Web Pengolahan Citra Digital</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="container">
+    <h1>🌿 Pengolahan Citra Digital</h1>
+    <p class="subtitle">Segmentasi Objek Daun Berbasis Web</p>
+
+    <form method="POST" enctype="multipart/form-data">
+        <label>Upload Citra</label>
+        <input type="file" name="image" required>
+
+        <label>Pilih Proses</label>
+        <select name="process">
+            <option value="rgb">Citra RGB</option>
+            <option value="hsv">Citra HSV</option>
+            <option value="threshold">Threshold Manual</option>
+            <option value="otsu">Threshold Otsu</option>
+            <option value="erosi">Erosi</option>
+            <option value="dilasi">Dilasi</option>
+            <option value="opening">Opening</option>
+            <option value="closing">Closing</option>
+            <option value="floodfill">Flood Fill</option>
+        </select>
+
+        <button type="submit">🔍 Proses Citra</button>
+    </form>
+
+    {% if output_image %}
+    <div class="result">
+        <h2>Hasil Pengolahan</h2>
+        <img src="data:image/png;base64,{{ output_image }}">
+    </div>
+    {% endif %}
+</div>
+
+</body>
+</html>
